@@ -1,7 +1,7 @@
 // src/main.ts
 import { createApp } from 'vue';  // Importeer de Vue bibliotheek
 import App from './App.vue';  // Importeer de hoofdcomponent van je app
-import router from './router';  // Importeer de router die we in stap 1 hebben gemaakt
+import router from './router/index.ts';  // Importeer de router die we in stap 1 hebben gemaakt
 import './index.css';  // Importeer Tailwind CSS
 
 // Maak de applicatie aan en gebruik de router
