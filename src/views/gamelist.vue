@@ -1,3 +1,28 @@
+
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+
+interface Anime {
+  mal_id: number;
+  title: string;
+}
+
+const games = ref<Anime[]>([]);
+
+const fetchGames = async () => {
+  try {
+    const response = await axios.get('https://api.jikan.moe/v4/top/anime');
+    games.value = response.data.data;
+  } catch (error) {
+    console.error('Er is een fout opgetreden bij het ophalen van de games:', error);
+  }
+};
+
+onMounted(() => {
+  fetchGames();
+});
+</script>
 <template>
     <div class="flex flex-col items-center justify-center min-h-screen bg-yellow-200 p-4">
       <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-2xl">
@@ -18,30 +43,6 @@
     </div>
   </template>
   
-  <script setup lang="ts">
-  import { ref, onMounted } from 'vue';
-  import axios from 'axios';
-  
-  interface Anime {
-    mal_id: number;
-    title: string;
-  }
-  
-  const games = ref<Anime[]>([]);
-  
-  const fetchGames = async () => {
-    try {
-      const response = await axios.get('https://api.jikan.moe/v4/top/anime');
-      games.value = response.data.data;
-    } catch (error) {
-      console.error('Er is een fout opgetreden bij het ophalen van de games:', error);
-    }
-  };
-  
-  onMounted(() => {
-    fetchGames();
-  });
-  </script>
   
   <style scoped>
   /* Voeg hier je eigen styling toe */
